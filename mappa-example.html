@@ -16,10 +16,10 @@ const mappa = new Mappa('Leaflet');
 
 // Lets change the map tiles to something with more contrast
 const options = {
-  lat: 0,
-  lng: 0,
-  zoom: 4,
-  style: "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+  lat: 49.26,
+  lng: -123.24,
+  zoom: 3,
+  style: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
 }
 
 function setup(){
@@ -33,7 +33,7 @@ function setup(){
   // Only redraw the meteorites when the map change and not every frame.
   myMap.onChange(drawMeteorites);
 
-  fill(70, 203,31); 
+  fill(255, 0,0); 
   stroke(100);
 }
 
