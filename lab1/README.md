@@ -2,7 +2,7 @@
 
 Hey there! Thank you for checking out my map.
 
-Access it here: https://github.com/UBC-GEOB472-Spring2021/rachel-web/lab1/homelessshelter.html
+Access it here: https://github.io/UBC-GEOB472-Spring2021/rachel-web/lab1/homelessshelter.html
 
 This map depicts the location of homeless shelters in Vancouver. Each point includes the name of the facility, who can go there, and the phone number that they can be contacted at. This map is used for navigational purposes and to offer a helpful resource to those who need it. Additionally, we can see many shelters that are located close together in the Downtown Eastside of Vancouver, demonstrating which areas in Vancouver are most in need of these resources. It poses questions as to why there are little to none in other areas of Vancouver, what patterns urban areas produce and the underlying issues that construct the need for shelters. It is important to be knowledgeable of where these exist to be resourceful within our communities, especially in the cold months of winter where these locations serve as potentially lifesaving warming shelters. 
 
