@@ -1,0 +1,59 @@
+<!doctype HTML>
+<html>
+
+<head>
+  <title> Leaflet Exercise </title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+  <!-- jQuery is a library that simplifies many things in JavaScript.
+	     We'll use it to retrieve data from the web. -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+</head>
+
+<body>
+
+
+  <div id="mapid" style="width: 600px; height:400px;"></div>
+
+  <script>
+    // Make a Leaflet map with L.map().
+    // Store the map in the variable 'map'.
+    // "mapid" is the 'id' of the DOM element to contain the map.
+    var map = L.map('mapid', {
+        center: [49.265637, -123.256113],
+        zoom: 15
+      } // this object holds map options
+    );
+    var topoTiles = L.tileLayer(
+      'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+      }
+    ).addTo(map);
+
+
+    $.getJSON("https://raw.githubusercontent.com/UBCGeodata/ubc-geospatial-opendata/master/ubcv/context/geojson/ubcv_psrp.geojson",
+      function(data) {
+        L.geoJson(data, {
+          style: function(feature) {
+            console.log(feature.properties.OBJECTID);
+            switch (feature.properties.OBJECTID) {
+              case 15:
+                return {
+                  color: "#74c476"
+                };
+              case 16:
+                return {
+                  color: "#006d2C"
+                };
+            }
+          }
+        }).addTo(map);
+    })
+  </script>
+
+</body>
+
+</html>
