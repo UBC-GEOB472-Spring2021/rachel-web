@@ -32,6 +32,10 @@
         attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
       }
     ).addTo(map);
+		
+		L.marker([49.2479, -123.2170]).addTo(map)
+		      .bindPopup('University Endowment Lands <br>     Ecological Reserve')
+		      .openPopup();
 
 
     $.getJSON("https://raw.githubusercontent.com/UBCGeodata/ubc-geospatial-opendata/master/ubcv/context/geojson/ubcv_psrp.geojson",
