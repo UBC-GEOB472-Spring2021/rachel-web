@@ -1,1 +1,177 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title> Women Make Less: The Gender Wage Gap in Canada 2020</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+<style>
+
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h2,
+h3 {
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+p {
+  font-size: 0.85em;
+  margin: 10px;
+  text-align: left;
+}
+
+/**
+* Create a position for the map
+* on the page */
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  border-radius: 6px;
+}
+
+#features {
+  top: 0;
+  height: 100px;
+  margin-top: 20px;
+  width: 250px;
+}
+
+#legend {
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  height: 150px;
+  margin-bottom: 40px;
+  width: 100px;
+}
+
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+</style>
+</head>
+<body>
+
+  <div id='map'></div>
+  <div class='map-overlay' id='features'><h2> Women Make Less: The Gender Wage Gap in Canada 2020</h2>
+  <div id='pd'><p>Hover over a province!</p></div></div>
+  <div class='map-overlay' id='legend'><h10> Average Hourly Wage Difference</h10></div>
+
+<script>
+  mapboxgl.accessToken='pk.eyJ1IjoicmF5cmF5bWNjIiwiYSI6ImNrbGJrNGMwYjMwY2wyb3FqdWt0MWl1NmgifQ.J_aeRSWnUEk0ZyqNZOf-hg';
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/rayraymcc/ckmmonlje0h9t17od57zsq3js',
+});
+
+map.on('load', function() {
+  map.getCanvas().style.cursor = 'default';
+
+// set map bounds to the continental US
+map.fitBounds([
+[-140.99778, 41.6751050889],
+[-52.6480987209, 83.23324]
+]);
+
+// make a pointer cursor
+map.getCanvas().style.cursor = 'default';
+
+
+var layers = [
+  '0-1.25',
+  '1.25-2.5',
+  '2.5-3.5',
+  '3.5-4.5',
+  '4.5-5.08',
+  '5.08+'
+  ];
+var colors = [
+  '#e3e3c0',
+  '#ffffb2',
+  '#fecc5c',
+  '#fe9929',
+  '#d95f0e',
+  '#993404'
+  ];
+
+for (i = 0; i < layers.length; i++) {
+  var layer = layers[i];
+  var color = colors[i];
+  var item = document.createElement('div');
+  var key = document.createElement('span');
+  key.className = 'legend-key';
+  key.style.backgroundColor = color;
+
+  var value = document.createElement('span');
+  value.innerHTML = layer;
+  item.appendChild(key);
+  item.appendChild(value);
+  legend.appendChild(item);
+}
+map.on('mousemove', function(e) {
+  var provinces = map.queryRenderedFeatures(e.point, {
+    layers: ['inequityfinal-d7g6j']
+  });
+
+  if (states.length > 0) {
+    document.getElementById('pd').innerHTML = '<h3><strong> Province: ' + provinces[0].properties.PRENAME + '</strong></h3><p><strong><em>'
+    + '<h3>,<strong><p> Wage inequality difference: ' + provinces[0].properties.averageinequality  + '</strong></em></p>';
+  } else {
+    document.getElementById('pd').innerHTML = '<p>Hover over a Province!</p>';
+  }
+});
+
+map.on('mousemove', function (e) {
+var features = map.queryRenderedFeatures(e.point, {
+layers: ['womenbipocbusinesses'] // replace this with the name of the layer
+});
+
+if (!features.length) {
+return;
+}
+
+var feature = features[0];
+
+var popup = new mapboxgl.Popup({ offset: [0, -15] })
+.setLngLat(feature.geometry.coordinates)
+.setHTML(
+'<h3>' + feature.properties.website + '</h3><p>' + feature.properties.services +'</p>'
+)
+.setLngLat(feature.geometry.coordinates)
+.addTo(map);
+});
+
+
+</script>
+
+</body>
+</html>
