@@ -1,5 +1,7 @@
 # rachel-web
+
 ![](images/mapscreenshot.PNG)
+
 Women Make Less: The Gender Wage Gap in Canada 2020
 & 10 BIPOC Women-Owned Local Businesses to Support
 
