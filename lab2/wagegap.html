@@ -54,7 +54,7 @@ p {
 
 #features {
   top: 0;
-  height: 150px;
+  height: 195px;
   margin-top: 20px;
   width: 250px;
 }
@@ -81,8 +81,8 @@ p {
 <body>
 
   <div id="map"></div>
-  <div class="map-overlay" id="features"><h2> Women Make Less: The Gender Wage Gap in Canada 2020</h2>
-  <div id="pd"><p>Find BIPOC Women-Owned Businesses to Support!</p></div></div>
+  <div class="map-overlay" id="features"><h2> Women Make Less: The Gender Wage Gap in Canada 2020</h2><h3><em>10 BIPOC Women-Owned Local Businesses to Support!</h3></em>
+  <div id="pd"><p>Hover over a Province!</p></div></div>
   <div class="map-overlay" id="legend"><h10> Average Hourly Wage Difference (in CAD dollars) </h10></div>
 
 <script>
@@ -126,16 +126,17 @@ for (i = 0; i < layers.length; i++) {
   item.appendChild(value);
   legend.appendChild(item);
 }
-map.on('mousemove', 'inequityfinal-d7g6j',(e) =>{
+map.on('mousemove', 'inequityfinal-d7yg6j',(e) =>{
   var provinces = map.queryRenderedFeatures(e.point, {
-    layers: ['inequityfinal-d7g6j']
+    layers: ['inequityfinal-d7yg6j']
   });
 
   if (provinces.length > 0) {
     document.getElementById('pd').innerHTML = '<h3><strong><p> Province: ' + provinces[0].properties.PRENAME + '</strong></h3></p><strong><em>'
-    + '<h3><strong><p> Wage inequality difference: ' + provinces[0].properties.averageinequality  + '</strong></em></p>';
+    + '<h3><strong><p>Goods-producing sector wage gap: ' + provinces[0].properties.GOODSPRODUCING_INEQUITY + '</strong></p>'
+    + '<h3><strong><p>Services-producing sector wage gap: ' + provinces[0].properties.SERVICESPRODUCING_INEQUITY + '</strong></em></p>';
   } else {
-    document.getElementById('pd').innerHTML = '<p>Find BIPOC Women-Owned Businesses to Support!</p>';
+    document.getElementById('pd').innerHTML = '<p>Hover over a Province!</p>';
   }
 });
 map.on('click', function(e) {
@@ -155,6 +156,8 @@ map.on('click', function(e) {
     .setHTML('<h3>' + feature.properties.PlaceName + '</h3><p>' + feature.properties.Website + '</p><p>' + feature.properties.Services)
     .addTo(map);
 });
+
+
 });
 
 </script>
